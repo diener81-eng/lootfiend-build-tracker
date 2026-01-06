@@ -85,6 +85,15 @@
     --border: 230 25% 22%;
     --input: 230 25% 18%;
     --ring: 263 70% 55%;
+    
+    /* Custom fantasy colors - must be duplicated in dark mode */
+    --legendary: 0 85% 60%;
+    --epic: 142 70% 50%;
+    --rare: 200 100% 55%;
+    --common: 215 20% 55%;
+    --success: 142 70% 45%;
+    --warning: 38 92% 50%;
+    
     --sidebar-background: 230 25% 10%;
     --sidebar-foreground: 210 40% 96%;
     --sidebar-primary: 263 70% 55%;
