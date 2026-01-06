@@ -7,7 +7,14 @@ import { BuildCard } from "@/components/BuildCard";
 import { ActionButton } from "@/components/ActionButton";
 import { FilterToggle } from "@/components/FilterToggle";
 import { useInventory } from "@/hooks/useInventory";
-import { arcanistInventory, arcanistBuilds, savageInventory, savageBuilds, getItemName, ClassType } from "@/data/gameData";
+import {
+  arcanistInventory,
+  arcanistBuilds,
+  savageInventory,
+  savageBuilds,
+  getItemName,
+  ClassType,
+} from "@/data/gameData";
 import { useToast } from "@/hooks/use-toast";
 
 const Index = () => {
@@ -21,14 +28,8 @@ const Index = () => {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const { toast } = useToast();
 
-  const {
-    ownedItems,
-    toggleItem,
-    saveInventory,
-    clearInventory,
-    exportInventory,
-    importInventory,
-  } = useInventory(selectedClass);
+  const { ownedItems, toggleItem, saveInventory, clearInventory, exportInventory, importInventory } =
+    useInventory(selectedClass);
 
   const inventory = selectedClass === "arcanist" ? arcanistInventory : savageInventory;
   const builds = selectedClass === "arcanist" ? arcanistBuilds : savageBuilds;
@@ -75,8 +76,8 @@ const Index = () => {
         const optimalOwned = ownedItems.has(item.itemId);
         const substituteIds = (item.substitutes || []).map(nameToId);
         const ownedSubstitute = substituteIds.find((subId) => ownedItems.has(subId));
-        const ownedSubstituteName = ownedSubstitute 
-          ? item.substitutes?.[substituteIds.indexOf(ownedSubstitute)] 
+        const ownedSubstituteName = ownedSubstitute
+          ? item.substitutes?.[substituteIds.indexOf(ownedSubstitute)]
           : undefined;
 
         return {
@@ -108,53 +109,57 @@ const Index = () => {
     <div className="min-h-screen bg-background relative overflow-hidden">
       {/* Background Effects */}
       <div className="fixed inset-0 pointer-events-none transition-colors duration-500">
-        <div className={`absolute top-0 left-1/4 w-96 h-96 rounded-full blur-3xl transition-colors duration-500 ${
-          selectedClass === "arcanist" ? "bg-[hsl(210_100%_50%/0.1)]" : "bg-accent/10"
-        }`} />
-        <div className={`absolute bottom-0 right-1/4 w-96 h-96 rounded-full blur-3xl transition-colors duration-500 ${
-          selectedClass === "arcanist" ? "bg-[hsl(210_100%_50%/0.1)]" : "bg-accent/10"
-        }`} />
-        <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-radial rounded-full transition-colors duration-500 ${
-          selectedClass === "arcanist" ? "from-[hsl(210_100%_50%/0.05)]" : "from-accent/5"
-        } to-transparent`} />
+        <div
+          className={`absolute top-0 left-1/4 w-96 h-96 rounded-full blur-3xl transition-colors duration-500 ${
+            selectedClass === "arcanist" ? "bg-[hsl(210_100%_50%/0.1)]" : "bg-accent/10"
+          }`}
+        />
+        <div
+          className={`absolute bottom-0 right-1/4 w-96 h-96 rounded-full blur-3xl transition-colors duration-500 ${
+            selectedClass === "arcanist" ? "bg-[hsl(210_100%_50%/0.1)]" : "bg-accent/10"
+          }`}
+        />
+        <div
+          className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-radial rounded-full transition-colors duration-500 ${
+            selectedClass === "arcanist" ? "from-[hsl(210_100%_50%/0.05)]" : "from-accent/5"
+          } to-transparent`}
+        />
       </div>
 
       <div className="relative z-10 container mx-auto px-4 py-8">
         {/* Header */}
-        <motion.header
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="text-center mb-10"
-        >
+        <motion.header initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-10">
           <div className="flex items-center justify-center gap-3 mb-3">
             <Sparkles className="w-8 h-8 text-legendary animate-pulse" />
             <h1 className="text-4xl md:text-5xl font-display font-bold">
-              <span className="text-accent tracking-wide" style={{ fontVariant: 'small-caps' }}>Lootfiend</span>{" "}
-              <span className="text-foreground/90 tracking-wide" style={{ fontVariant: 'small-caps' }}>Build Tracker</span>
+              <span className="text-accent tracking-wide" style={{ fontVariant: "small-caps" }}>
+                Lootfiend
+              </span>{" "}
+              <span className="text-foreground/90 tracking-wide" style={{ fontVariant: "small-caps" }}>
+                Build Tracker
+              </span>
             </h1>
             <Sparkles className="w-8 h-8 text-legendary animate-pulse" />
           </div>
           <p className="text-xs text-muted-foreground/60 mb-1">v3.26</p>
           <p className="text-muted-foreground mb-6 text-sm md:text-base">
-            Saves in your browser (no login). Arcanist and Savage are stored separately.
+            Saves in your browser, or export json. Arcanist and Savage are stored separately.
           </p>
-          <ClassToggle
-            selectedClass={selectedClass}
-            onClassChange={setSelectedClass}
-          />
+          <ClassToggle selectedClass={selectedClass} onClassChange={setSelectedClass} />
         </motion.header>
 
         <div className="grid lg:grid-cols-2 gap-8">
           {/* Inventory Panel */}
-          <motion.section
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.1 }}
-          >
+          <motion.section initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.1 }}>
             <div className="glass rounded-2xl p-6">
               <div className="flex items-center justify-between mb-4">
                 <div>
-                  <h2 className="text-2xl font-display font-semibold tracking-wide" style={{ fontVariant: 'small-caps' }}>Your Inventory</h2>
+                  <h2
+                    className="text-2xl font-display font-semibold tracking-wide"
+                    style={{ fontVariant: "small-caps" }}
+                  >
+                    Your Inventory
+                  </h2>
                   <p className="text-sm text-muted-foreground">
                     {totalOwned}/{totalItems} items owned
                   </p>
@@ -182,13 +187,7 @@ const Index = () => {
                   <Upload className="w-3.5 h-3.5" />
                   Import
                 </ActionButton>
-                <input
-                  ref={fileInputRef}
-                  type="file"
-                  accept=".json"
-                  onChange={handleImport}
-                  className="hidden"
-                />
+                <input ref={fileInputRef} type="file" accept=".json" onChange={handleImport} className="hidden" />
               </div>
 
               <div className="space-y-3 max-h-[calc(100vh-400px)] overflow-y-auto pr-2 custom-scrollbar">
@@ -207,13 +206,12 @@ const Index = () => {
           </motion.section>
 
           {/* Builds Panel */}
-          <motion.section
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.2 }}
-          >
+          <motion.section initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.2 }}>
             <div className="glass rounded-2xl p-6">
-              <h2 className="text-2xl font-display font-semibold mb-4 tracking-wide" style={{ fontVariant: 'small-caps' }}>
+              <h2
+                className="text-2xl font-display font-semibold mb-4 tracking-wide"
+                style={{ fontVariant: "small-caps" }}
+              >
                 Popular Compatible Builds
               </h2>
 
