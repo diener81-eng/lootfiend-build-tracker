@@ -128,8 +128,9 @@ const Index = () => {
         >
           <div className="flex items-center justify-center gap-3 mb-3">
             <Sparkles className="w-8 h-8 text-legendary animate-pulse" />
-            <h1 className="text-4xl md:text-5xl font-display font-bold text-gradient">
-              LootFiend Build Tracker
+            <h1 className="text-4xl md:text-5xl font-display font-bold">
+              <span className="text-accent tracking-wide" style={{ fontVariant: 'small-caps' }}>Lootfiend</span>{" "}
+              <span className="text-foreground/90 tracking-wide" style={{ fontVariant: 'small-caps' }}>Build Tracker</span>
             </h1>
             <Sparkles className="w-8 h-8 text-legendary animate-pulse" />
           </div>
@@ -153,7 +154,7 @@ const Index = () => {
             <div className="glass rounded-2xl p-6">
               <div className="flex items-center justify-between mb-4">
                 <div>
-                  <h2 className="text-2xl font-display font-semibold">Your Inventory</h2>
+                  <h2 className="text-2xl font-display font-semibold tracking-wide" style={{ fontVariant: 'small-caps' }}>Your Inventory</h2>
                   <p className="text-sm text-muted-foreground">
                     {totalOwned}/{totalItems} items owned
                   </p>
