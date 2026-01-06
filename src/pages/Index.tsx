@@ -141,7 +141,7 @@ const Index = () => {
             </h1>
             <Sparkles className="w-8 h-8 text-legendary animate-pulse" />
           </div>
-          <p className="text-xs text-muted-foreground/60 mb-1">v3.26</p>
+          
           <p className="text-muted-foreground mb-6 text-sm md:text-base">
             Saves in your browser, or export json. Arcanist and Savage are stored separately.
           </p>
@@ -288,18 +288,19 @@ const Index = () => {
           transition={{ delay: 0.4 }}
           className="text-center mt-12 text-muted-foreground text-sm"
         >
-          <p>
-            Data sourced from{" "}
-            <a
-              href="https://lootbornwarriors.miraheze.org"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-primary hover:underline"
-            >
-              Lootborn Warriors Wiki
-            </a>
-          </p>
-        </motion.footer>
+        <p>
+          Data sourced from{" "}
+          <a
+            href="https://lootbornwarriors.miraheze.org"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-primary hover:underline"
+          >
+            Lootborn Warriors Wiki
+          </a>
+        </p>
+        <p className="text-[10px] text-muted-foreground/40 mt-2">v3.26</p>
+      </motion.footer>
       </div>
     </div>
   );
