@@ -213,7 +213,7 @@ const Index = () => {
             transition={{ delay: 0.2 }}
           >
             <div className="glass rounded-2xl p-6">
-              <h2 className="text-2xl font-display font-semibold mb-4">
+              <h2 className="text-2xl font-display font-semibold mb-4 tracking-wide" style={{ fontVariant: 'small-caps' }}>
                 Popular Compatible Builds
               </h2>
 
