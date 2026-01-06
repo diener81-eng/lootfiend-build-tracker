@@ -1,7 +1,14 @@
 import { useState } from "react";
-import { ChevronDown, ExternalLink, Check, X, AlertTriangle, Minus } from "lucide-react";
+import { ChevronDown, ExternalLink, Check, X, AlertTriangle } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Progress } from "@/components/ui/progress";
+import { GREEN_ITEMS } from "@/data/gameData";
+
+// Check if an item should be displayed in green (set items)
+const isSetItem = (name: string) => GREEN_ITEMS.has(name);
+
+// Get the appropriate color class for an item name
+const getItemColorClass = (name: string) => isSetItem(name) ? "text-epic" : "text-legendary";
 
 interface BuildItem {
   slot: string;
@@ -169,50 +176,69 @@ export const BuildCard = ({
                     {item.owned ? (
                       // Has optimal item
                       <>
-                        <div className="flex items-center gap-2">
+                        <div className="flex items-center gap-2 flex-wrap">
                           <span>{item.icon}</span>
                           <span className="font-medium text-sm">{item.slot}:</span>
-                          <span className="text-sm text-success">{item.name}</span>
+                          <span className={`text-sm ${getItemColorClass(item.name)}`}>{item.name}</span>
                           <span className="text-xs text-muted-foreground">(optimal)</span>
                         </div>
                         {/* Show substitutes info if any */}
                         {item.substitutes && item.substitutes.length > 0 && (
                           <p className="text-xs text-muted-foreground mt-0.5 ml-6">
-                            Substitutes: {item.substitutes.join(", ")}
+                            Substitutes: {item.substitutes.map((sub, i) => (
+                              <span key={i}>
+                                {i > 0 && ", "}
+                                <span className={getItemColorClass(sub)}>{sub}</span>
+                              </span>
+                            ))}
                           </p>
                         )}
                       </>
                     ) : item.hasSubstitute ? (
                       // Has substitute but not optimal
                       <>
-                        <div className="flex items-center gap-2">
+                        <div className="flex items-center gap-2 flex-wrap">
                           <span>{item.icon}</span>
                           <span className="font-medium text-sm">{item.slot}:</span>
-                          <span className="text-sm text-warning">{item.ownedSubstituteName}</span>
+                          <span className={`text-sm ${getItemColorClass(item.ownedSubstituteName || "")}`}>
+                            {item.ownedSubstituteName}
+                          </span>
                           <span className="text-xs text-muted-foreground">(playable, not optimal)</span>
                         </div>
                         <p className="text-xs text-muted-foreground mt-0.5 ml-6">
-                          Optimal item: <span className="text-legendary">{item.name}</span>
+                          Optimal item: <span className={getItemColorClass(item.name)}>{item.name}</span>
                         </p>
                         {/* Show other substitutes if any */}
                         {item.substitutes && item.substitutes.length > 1 && (
                           <p className="text-xs text-muted-foreground mt-0.5 ml-6">
-                            Other substitutes: {item.substitutes.filter(s => s !== item.ownedSubstituteName).join(", ")}
+                            Other substitutes: {item.substitutes
+                              .filter(s => s !== item.ownedSubstituteName)
+                              .map((sub, i) => (
+                                <span key={i}>
+                                  {i > 0 && ", "}
+                                  <span className={getItemColorClass(sub)}>{sub}</span>
+                                </span>
+                              ))}
                           </p>
                         )}
                       </>
                     ) : (
                       // Missing both optimal and substitutes
                       <>
-                        <div className="flex items-center gap-2">
+                        <div className="flex items-center gap-2 flex-wrap">
                           <span>{item.icon}</span>
                           <span className="font-medium text-sm">{item.slot}:</span>
-                          <span className="text-sm text-legendary">{item.name}</span>
+                          <span className={`text-sm ${getItemColorClass(item.name)}`}>{item.name}</span>
                           <span className="text-xs text-muted-foreground">(missing)</span>
                         </div>
                         {item.substitutes && item.substitutes.length > 0 && (
                           <p className="text-xs text-muted-foreground mt-0.5 ml-6">
-                            Substitutes: {item.substitutes.join(", ")}
+                            Substitutes: {item.substitutes.map((sub, i) => (
+                              <span key={i}>
+                                {i > 0 && ", "}
+                                <span className={getItemColorClass(sub)}>{sub}</span>
+                              </span>
+                            ))}
                           </p>
                         )}
                       </>
