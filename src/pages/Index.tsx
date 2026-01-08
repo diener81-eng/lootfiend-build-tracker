@@ -144,10 +144,10 @@ const Index = () => {
             <Sparkles className="w-5 h-5 md:w-8 md:h-8 text-legendary animate-pulse" />
           </div>
 
-          <ClassToggle selectedClass={selectedClass} onClassChange={setSelectedClass} />
-          <p className="text-muted-foreground mt-3 md:mt-4 text-xs md:text-sm max-w-xl mx-auto">
-            Check off items you own. Builds are sorted by % complete. Use filters to hide PvE or PvP builds. Saves in your browser, or export JSON. Arcanist and Savage are stored separately.
+          <p className="text-muted-foreground mb-3 md:mb-6 text-xs md:text-base hidden md:block">
+            Saves in your browser, or export json. Arcanist and Savage are stored separately.
           </p>
+          <ClassToggle selectedClass={selectedClass} onClassChange={setSelectedClass} />
         </motion.header>
 
         <div className="grid lg:grid-cols-2 gap-4 md:gap-8">
@@ -169,7 +169,7 @@ const Index = () => {
               </div>
 
               <p className="text-xs md:text-sm text-muted-foreground mb-3 md:mb-4 hidden md:block">
-                Check the items you own. This list is from all items used in the wiki builds (including substitutes).
+                This list is from all items used in the wiki builds (including substitutes).
               </p>
 
               <div className="flex flex-wrap gap-1.5 md:gap-2 mb-4 md:mb-6">
@@ -214,9 +214,8 @@ const Index = () => {
                 className="text-xl md:text-2xl font-display font-semibold mb-3 md:mb-4 tracking-wide"
                 style={{ fontVariant: "small-caps" }}
               >
-              Popular Builds
+                Popular Builds
               </h2>
-
 
               <div className="flex flex-wrap items-center gap-1.5 md:gap-2 mb-4 md:mb-6">
                 <span className="text-xs md:text-sm text-muted-foreground">Filters:</span>
