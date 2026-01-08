@@ -126,7 +126,11 @@ const Index = () => {
 
       <div className="relative z-10 container mx-auto px-3 md:px-4 py-4 md:py-8">
         {/* Header - More compact on mobile */}
-        <motion.header initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-4 md:mb-10">
+        <motion.header
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="text-center mb-4 md:mb-10"
+        >
           <div className="flex items-center justify-center gap-2 md:gap-3 mb-2 md:mb-3">
             <Sparkles className="w-5 h-5 md:w-8 md:h-8 text-legendary animate-pulse" />
             <h1 className="text-2xl md:text-5xl font-display font-bold">
@@ -139,7 +143,7 @@ const Index = () => {
             </h1>
             <Sparkles className="w-5 h-5 md:w-8 md:h-8 text-legendary animate-pulse" />
           </div>
-          
+
           <p className="text-muted-foreground mb-3 md:mb-6 text-xs md:text-base hidden md:block">
             Saves in your browser, or export json. Arcanist and Savage are stored separately.
           </p>
